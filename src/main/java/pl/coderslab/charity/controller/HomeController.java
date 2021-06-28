@@ -24,7 +24,13 @@ public class HomeController {
 
 
     @RequestMapping("/")
-    public String homeAction(){
+    public String homeAction(Model model){
+        List<Donation> donations = donationRepository.findAll();
+        int bags = 0;
+        for(Donation donation:donations) {
+            bags += donation.getQuantity();
+        }
+        model.addAttribute("bags", bags);
         return "index";
     }
 
