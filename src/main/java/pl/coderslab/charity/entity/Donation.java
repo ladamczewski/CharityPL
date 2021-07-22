@@ -2,6 +2,7 @@ package pl.coderslab.charity.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ public class Donation {
     private Long id;
     private Integer quantity;
     @OneToMany
+    @JoinColumn(name = "id_donation")
     private List<Category> categories;
     @OneToOne
     private Institution institution;

@@ -39,7 +39,7 @@ private final CategoryRepository categoryRepository;
     @PostMapping("/newdonate")
     public String donatePost(@ModelAttribute Donation donation){
         donationRepository.save(donation);
-        return "redirect:../../";
+        return "formConfirmation";
     }
 
     @ModelAttribute("categories")
