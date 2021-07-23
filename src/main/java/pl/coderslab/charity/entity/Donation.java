@@ -17,7 +17,7 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer quantity;
-    @OneToMany
+    @ManyToMany
     private List<Category> categories;
     @OneToOne
     private Institution institution;
@@ -28,4 +28,12 @@ public class Donation {
     private LocalDate pickUpDate;
     private LocalTime pickUpTime;
     private String pickUpComment;
+    
+    public List<Category> getCategories(){
+    	return this.categories;
+    }
+    
+    public void setCategories(List<Category> categories) {
+    	this.categories = categories;
+    }
 }

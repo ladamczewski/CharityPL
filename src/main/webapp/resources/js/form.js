@@ -38,4 +38,4 @@ document.addEventListener("DOMContentLoaded", function() {
       timeSum.innerHTML=pickUpTime.value;
       comSum.innerHTML=pickUpComment.value;
     })
-}
+})

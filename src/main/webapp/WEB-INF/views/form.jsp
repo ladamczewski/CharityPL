@@ -92,8 +92,8 @@
           <div data-step="1" class="active">
             <h3>Zaznacz co chcesz oddać:</h3>
 
-            <form:checkboxes path="categories"
-                             items="${categories}" itemLabel="name" itemValue="id" class="categories"/>
+            <form:checkboxes path="categories" cssClass="categories"
+                             items="${categories}" itemLabel="name" itemValue="id" cssStyle="display: block"/>
 
             <div class="form-group form-group--buttons">
               <button type="button" class="btn next-step">Dalej</button>
@@ -107,7 +107,7 @@
             <div class="form-group form-group--inline">
               <label>
                 Liczba 60l worków:
-                <form:input path="quantity" id="quantity"/>
+                <form:input type="number" path="quantity"/>
               </label>
             </div>
 
@@ -123,7 +123,7 @@
           <div data-step="3">
             <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
-            <form:select path="institution" items="${institutions}" itemLabel="name" itemValue="id" id="institution"/>
+            <form:select path="institution" items="${institutions}" itemLabel="name" itemValue="id"/>
 
             <div class="form-group form-group--buttons">
               <button type="button" class="btn prev-step">Wstecz</button>
@@ -139,16 +139,16 @@
               <div class="form-section--column">
                 <h4>Adres odbioru</h4>
                 <div class="form-group form-group--inline">
-                  <label> Ulica   <form:input path="street" id="street"/> </label>
+                  <label> Ulica   <form:input path="street" /> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
-                  <label> Miasto  <form:input path="city" id="city"/> </label>
+                  <label> Miasto  <form:input path="city"/> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label>
-                    Kod pocztowy  <form:input path="zipCode" id="zipCode"/>
+                    Kod pocztowy  <form:input path="zipCode" />
                   </label>
                 </div>
 
@@ -157,24 +157,24 @@
               <div class="form-section--column">
                 <h4>Termin odbioru</h4>
                 <div class="form-group form-group--inline">
-                  <label> Data   <form:input type="date" path="pickUpDate" id="pickUpDate"/> </label>
+                  <label> Data   <form:input type="date" path="pickUpDate"/> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
-                  <label> Godzina <form:input type="time" path="pickUpTime" id="pickUpTime"/> </label>
+                  <label> Godzina <form:input type="time" path="pickUpTime" /> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
                   <label>
                     Uwagi dla kuriera
-                    <form:textarea path="pickUpComment" id="pickUpComment"/>
+                    <form:textarea path="pickUpComment"/>
                   </label>
                 </div>
               </div>
             </div>
             <div class="form-group form-group--buttons">
               <button type="button" class="btn prev-step">Wstecz</button>
-              <button type="button" class="btn next-step">Dalej</button>
+              <button type="button" class="btn next-step btnSum">Dalej</button>
             </div>
           </div>
 
@@ -188,7 +188,7 @@
                 <ul>
                   <li>
                     <span class="icon icon-bag"></span>
-                    <span class="summary--text" id="catSum"
+                    <span id="catSum" class="summary--text"
                       >4 worki ubrań w dobrym stanie dla dzieci</span
                     >
                   </li>
@@ -206,19 +206,19 @@
                 <div class="form-section--column">
                   <h4>Adres odbioru:</h4>
                   <ul>
-                    <li id="streetSum">Prosta 51</li>
-                    <li id="citySum">Warszawa</li>
-                    <li id="zipSum">99-098</li>
-                    <li id="phoneSum">123 456 789</li>
+                    <li id="streetSum"></li>
+                    <li id="citySum"></li>
+                    <li id="zipSum"></li>
+                    <li id="phoneSum"></li>
                   </ul>
                 </div>
 
                 <div class="form-section--column">
                   <h4>Termin odbioru:</h4>
                   <ul>
-                    <li id="dateSum">13/12/2018</li>
-                    <li id="timeSum">15:40</li>
-                    <li id="comSum">Brak uwag</li>
+                    <li id="dateSum"></li>
+                    <li id="timeSum"></li>
+                    <li id="comSum"></li>
                   </ul>
                 </div>
               </div>
@@ -270,48 +270,6 @@
     </footer>
 
     <script src="<c:url value='../resources/js/app.js'/>"></script>
-    <script>
-    const bagsQuant = document.querySelector('#quantity');
-    const institution = document.querySelector('#institution').children[document.querySelector('#institution').value].innerHTML;
-    const categories = document.querySelectorAll('.categories')
-    let catString = "";
-    const street = document.querySelector('#street');
-    const city = document.querySelector('#city');
-    const zipCode = document.querySelector('#zipCode');
-    const pickUpDate = document.querySelector('#pickUpDate');
-    const pickUpTime = document.querySelector('#pickUpTime');
-    const pickUpComment = document.querySelector('#pickUpComment');
-    const catSum = document.querySelector('#catSum');
-    const instSum = document.querySelector('#instSum');
-    const streetSum = document.querySelector('#streetSum');
-    const citySum = document.querySelector('#citySum');
-    const zipSum = document.querySelector('#zipSum');
-    const phoneSum = document.querySelector('#phoneSum');
-    const dateSum = document.querySelector('#dateSum');
-    const timeSum = document.querySelector('#timeSum');
-    const comSum = document.querySelector('#comSum');
-
-
-
-    document.addEventListener("DOMContentLoaded", function() {
-
-        document.querySelector(".btnSum").addEventListener('click', ()=>{
-          catString += "Oddajesz " + bagsQuant.value + " worków z kategorii: "
-          categories.forEach(category=>{
-            if(category.checked === true){
-              catString += category.nextElementSibling.innerHTML + " "
-            }
-          })
-          catSum.innerHTML = catString;
-          instSum.innerHTML = institution;
-          streetSum.innerHTML = street.value;
-          citySum.innerHTML = city.value;
-          zipSum.innerHTML=zipCode.value;
-          dateSum.innerHTML=pickUpDate.value;
-          timeSum.innerHTML=pickUpTime.value;
-          comSum.innerHTML=pickUpComment.value;
-        })
-    }</script>
-    
+    <script src="<c:url value='../resources/js/form.js'/>"></script>
   </body>
 </html>

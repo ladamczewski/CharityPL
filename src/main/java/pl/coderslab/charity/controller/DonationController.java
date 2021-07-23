@@ -32,15 +32,14 @@ private final CategoryRepository categoryRepository;
 
     @GetMapping("/newdonate")
     public String donate(Model model){
-    	Donation donation = new Donation();
-        model.addAttribute("donation", donation);
+        model.addAttribute("donation",  new Donation());
         return "form";
     }
 
     @PostMapping("/newdonate")
     public String donatePost(@ModelAttribute Donation donation){
         donationRepository.save(donation);
-        return "redirect:../../";
+        return "formConfirmation";
     }
 
     @ModelAttribute("categories")
