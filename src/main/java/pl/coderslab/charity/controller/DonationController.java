@@ -32,7 +32,7 @@ private final CategoryRepository categoryRepository;
 
     @GetMapping("/newdonate")
     public String donate(Model model){
-        model.addAttribute("donation", new Donation());
+        model.addAttribute("donation",  new Donation());
         return "form";
     }
 

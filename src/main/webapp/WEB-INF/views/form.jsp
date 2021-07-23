@@ -270,8 +270,7 @@
     </footer>
 
     <script src="<c:url value='../resources/js/app.js'/>"></script>
-    <script>
+    <script src="<c:url value='../resources/js/form.js'/>"></script>
 
-    </script>
   </body>
 </html>
