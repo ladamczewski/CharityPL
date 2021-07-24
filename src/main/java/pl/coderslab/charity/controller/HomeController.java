@@ -15,6 +15,8 @@ import pl.coderslab.charity.repository.UserRepository;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 @Controller
 public class HomeController {
@@ -41,15 +43,24 @@ public class HomeController {
     }
 
     @GetMapping("/newacc")
-    public String createUser(Model model){
-        model.addAttribute("user", new User());
+    public String createUser(){;
         return "userForm";
     }
 
     @PostMapping("/newacc")
-    public String createUserPost(@ModelAttribute User user){
-        userRepository.save(user);
-        return "index";
+    public String createUserPost(HttpServletRequest request){
+        String mail = request.getParameter("email");
+        String password = request.getParameter("password");
+        String passwordTwo = request.getParameter("password2");
+        if(password.equals(passwordTwo)) {
+        	User user = new User();
+        	user.setEmail(mail);
+        	user.setPassword(password);
+            userRepository.save(user);
+            return "index";
+        }else {
+        	return "header";
+        }
     }
 
     @ModelAttribute("institutions")

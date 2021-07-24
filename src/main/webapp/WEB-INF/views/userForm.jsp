@@ -12,59 +12,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <link rel="stylesheet" href="<c:url value='../resources/css/style.css'/>"/>
-</head>
-<body>
-<header class="header--form-page">
-    <nav class="container container--70">
-        <ul class="nav--actions">
-            <li class="logged-user">
-                Witaj Agata
-                <ul class="dropdown">
-                    <li><a href="#">Profil</a></li>
-                    <li><a href="#">Moje zbiórki</a></li>
-                    <li><a href="#">Wyloguj</a></li>
-                </ul>
-            </li>
-        </ul>
-            <!-- STEP 4 -->
-            <div class="user-form">
-                <h3>Podaj dane:</h3>
-    <label for="userName" class="userform">Podaj login:
-    <form:input name="userName" path="userName"/>
-    </label>
-    <label for="password" class="userform">Podaj hasło
-    <form:password name="password" path="password" />
-    </label>
-    <label for="firstName" class="userform">Podaj imię:
-        <form:input name="firstName" path="firstName"/>
-    </label>
-    <label for="lastName" class="userform">Podaj nazwisko:
-        <form:input name="lastName" path="lastName"/>
-    </label>
-    <label for="email" class="userform">Podaj email:
-        <form:input type="email" name="email" path="email"/>
-    </label>
-    <input type="submit" value="Załóż konto">
-                
-            </div>
-
-
-
-<script src="<c:url value='../resources/js/app.js'/>"></script>
-<script>
-
-</script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <header>
@@ -86,7 +33,7 @@
 
     <section class="login-page">
       <h2>Załóż konto</h2>
-	<form:form modelAttribute="user">
+	<form method="post">
         <div class="form-group">
           <input type="email" name="email" placeholder="Email" />
         </div>
@@ -101,7 +48,7 @@
           <a href="login.html" class="btn btn--without-border">Zaloguj się</a>
           <button class="btn" type="submit">Załóż konto</button>
         </div>
-</form:form>
+</form>
     </section>
 
     <footer>
