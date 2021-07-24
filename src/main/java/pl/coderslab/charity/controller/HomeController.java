@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.entity.User;
@@ -61,6 +63,19 @@ public class HomeController {
         }else {
         	return "header";
         }
+    }
+    
+    @GetMapping("/login")
+    public String login() {
+    	return "login";
+    }
+    
+    @PostMapping("/login")
+    @ResponseBody
+    public String loginPost(HttpServletRequest request) {
+    	String mail = request.getParameter("email");
+    	User userLog = userRepository.findByEmail(mail);
+    	return "<h1>SUCCES</h1>" + "<h1>" + userLog.getEmail() + "</h1>";
     }
 
     @ModelAttribute("institutions")
